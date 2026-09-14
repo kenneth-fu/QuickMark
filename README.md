@@ -27,22 +27,29 @@ times a day, is the entire reason this project exists.
 QuickMark closes it. One preview extension that renders all of these, in one
 theme that follows light and dark mode, with no JavaScript anywhere in it.
 
-### A correction about QLMarkdown
+### Compared with QLMarkdown
 
-This began as a replacement for
-[QLMarkdown](https://github.com/sbarex/QLMarkdown), which had stopped previewing
-Markdown on my machine. The diagnosis at the time was that it was abandoned and
-built on the retired `.qlgenerator` architecture.
+[QLMarkdown](https://github.com/sbarex/QLMarkdown) is the established Markdown
+previewer and it is actively maintained. For Markdown alone it goes deeper than
+this does: syntax highlighted code, wikilinks, definition lists, configurable
+themes, and 17 claimed content types covering the dialects, from Typora to
+Quarto to R Markdown.
 
-**That was wrong, and it belongs here rather than buried.** QLMarkdown is
-actively maintained (1.5.3 shipped in September 2026) and ships a modern preview
-extension of exactly the same kind as this one. If Markdown is all you need, it
-is the more mature and more configurable choice. Installing it will also take
-Markdown previews back from QuickMark, since when two extensions claim a content
-type macOS picks one of them.
+QuickMark covers more formats rather than more Markdown. Its six claimed types
+span four file formats plus every extension-less text file on the system:
 
-What QuickMark does that it does not: JSON, EPUB, dotenv and extension-less text
-files, handled by a single extension with a single consistent theme.
+| | QuickMark | QLMarkdown |
+| --- | --- | --- |
+| Markdown | yes | yes, more dialects and features |
+| JSON | yes | no |
+| EPUB | yes | no |
+| dotenv | yes | no |
+| `Dockerfile`, `.gitignore`, extension-less text | yes | no |
+
+Both can be installed at once, but only one can own Markdown: when two
+extensions claim a content type, macOS picks one of them. If Markdown previews
+stop coming from QuickMark, that is why. Choose between them in System Settings,
+under General, Login Items & Extensions, Quick Look.
 
 ## Install
 

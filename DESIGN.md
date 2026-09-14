@@ -31,12 +31,12 @@ A macOS Quick Look Preview Extension that renders Markdown, EPUB, JSON, dotenv
 and plain text in the Finder preview panel, plus a small host app whose job is
 to exist so macOS has somewhere to find the extension.
 
-It was written to replace QLMarkdown, which was not previewing Markdown on this
-machine. **That original diagnosis was wrong in one respect and it is worth
-recording:** QLMarkdown 1.5.2 is not a retired `.qlgenerator` plugin. It ships a
-modern preview extension of exactly the same kind as this one, and once
-registered it claims `net.daringfireball.markdown` and wins Markdown previews
-over QuickMark. See [Things to be aware of](#things-to-be-aware-of).
+QLMarkdown is the closest existing tool. It is actively maintained and ships a
+modern preview extension of the same kind as this one, so once registered it
+claims `net.daringfireball.markdown` and wins Markdown previews over QuickMark.
+That is a routing fact worth knowing before testing Markdown changes, since a
+preview that looks unchanged may simply be coming from the other extension. See
+[Things to be aware of](#things-to-be-aware-of).
 
 Around 2948 lines of Swift, 743 lines of CSS, no third party runtime code
 other than Apple's swift-markdown.
