@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+	  Sandbox is off for local, ad hoc signed builds. A sandboxed preview
+	  extension only gets read access to the previewed file itself, which breaks
+	  relative image references such as ![](screenshots/one.png). Turn both this
+	  and the extension's entitlement back on if you ever ship this through the
+	  App Store, and accept that images beside the document will stop loading.
+	-->
+	<key>com.apple.security.app-sandbox</key>
+	<false/>
+</dict>
+</plist>

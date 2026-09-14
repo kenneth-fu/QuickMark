@@ -1,0 +1,21 @@
+{
+  "name": "quickmark",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Rendered Markdown in Finder's Quick Look",
+  "keywords": ["macos", "quicklook", "markdown", "swift"],
+  "engines": { "macos": ">=14.0", "xcode": ">=26.0" },
+  "dependencies": {
+    "swift-markdown": {
+      "url": "https://github.com/apple/swift-markdown.git",
+      "version": "0.8.0",
+      "transitive": ["swift-cmark"]
+    }
+  },
+  "numbers": { "int": 42, "negative": -17, "float": 1.50, "exponent": 6.02e23 },
+  "nothing": null,
+  "emptyObject": {},
+  "emptyArray": [],
+  "matrix": [[1, 2], [3, 4]],
+  "escaped": "a \"quoted\" value with a \\ backslash and a é"
+}

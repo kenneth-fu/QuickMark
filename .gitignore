@@ -1,0 +1,16 @@
+# Build products
+.build/
+build/
+DerivedData/
+
+# Xcode user state
+*.xcuserstate
+xcuserdata/
+*.xcworkspace/xcuserdata/
+.swiftpm/
+
+# Generated. Recreate with ./generate_project.sh
+QuickMark.xcodeproj/
+
+# macOS
+.DS_Store

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>QuickMark Preview</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>XPC!</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionAttributes</key>
+		<dict>
+			<key>QLSupportedContentTypes</key>
+			<array>
+				<string>net.daringfireball.markdown</string>
+				<string>public.markdown</string>
+				<!--
+				  public.data is the only type that reaches a .env file: macOS
+				  finds no extension on a leading dot name, so it types it as
+				  plain data. Quick Look prefers the most specific match, so
+				  images, PDFs and the rest still go to their own handlers; this
+				  only picks up files nothing else claims. Remove this line to
+				  go back to Markdown only.
+				-->
+				<string>public.data</string>
+				<!--
+				  Reaches .env.local, .env.production and config.env, whose
+				  trailing extension the app declares as an Environment File.
+				  A public.data claim does not match those: macOS gives an
+				  unrecognised extension a synthesized dyn.* type, and Quick
+				  Look does not resolve that against public.data.
+				-->
+				<string>com.puiwaifu.quickmark.dotenv</string>
+				<!--
+				  A proper Apple defined type, so this claim is exact and takes
+				  nothing else with it. Add public.geojson here if you want
+				  .geojson files rendered the same way.
+				-->
+				<string>public.json</string>
+				<!--
+				  Also an Apple defined type, and nothing else on the system
+				  claims it. Parsing reads only the .epub file itself, which
+				  Quick Look already grants, so this needs no entitlement.
+				-->
+				<string>org.idpf.epub-container</string>
+			</array>
+			<key>QLSupportsSearchableItems</key>
+			<false/>
+		</dict>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.quicklook.preview</string>
+		<key>NSExtensionPrincipalClass</key>
+		<string>$(PRODUCT_MODULE_NAME).PreviewViewController</string>
+	</dict>
+</dict>
+</plist>

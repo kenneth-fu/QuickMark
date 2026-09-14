@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.productivity</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>NSHumanReadableCopyright</key>
+	<string></string>
+	<!--
+	  macOS has no type for dotenv files. A leading dot name like .env has no
+	  extension it recognises (handled by the public.data claim in the
+	  extension), and .env.local gets a synthesized dyn.* type that a public.data
+	  claim does not match. Declaring a real type for the trailing extensions is
+	  the only way to reach those.
+
+	  This claims these extensions system-wide: any file.local or file.staging
+	  becomes an Environment File and previews through QuickMark. They are rare
+	  outside dotenv, and non dotenv ones simply render as plain text. Trim this
+	  list to narrow the claim. Note that .env.example is deliberately not here,
+	  since .example collides more widely; add it if you want it.
+	-->
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>com.puiwaifu.quickmark.dotenv</string>
+			<key>UTTypeDescription</key>
+			<string>Environment File</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.plain-text</string>
+			</array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>env</string>
+					<string>local</string>
+					<string>production</string>
+					<string>development</string>
+					<string>staging</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeIdentifier</key>
+			<string>net.daringfireball.markdown</string>
+			<key>UTTypeDescription</key>
+			<string>Markdown Document</string>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.plain-text</string>
+			</array>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>md</string>
+					<string>markdown</string>
+					<string>mdown</string>
+					<string>mkd</string>
+					<string>mkdn</string>
+					<string>mdwn</string>
+					<string>qmd</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>text/markdown</string>
+					<string>text/x-markdown</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

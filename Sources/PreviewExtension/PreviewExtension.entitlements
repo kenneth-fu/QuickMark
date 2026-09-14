@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+	  The sandbox is not optional here. ExtensionFoundation builds the XPC
+	  connection for a preview request out of the extension's container
+	  identity, and an unsandboxed appex has none, so Quick Look crashes on a
+	  nil dictionary key before our code ever runs. Every preview extension
+	  Apple ships carries these same two entitlements.
+	-->
+	<key>com.apple.security.app-sandbox</key>
+	<true/>
+	<key>com.apple.security.files.user-selected.read-only</key>
+	<true/>
+
+	<!--
+	  WKWebView runs its content and networking work in separate XPC services.
+	  Inside a sandboxed extension without this, those services fail to launch:
+
+	      WebProcessProxy::didFinishLaunching: Invalid connection identifier
+	      Could not signal service com.apple.WebKit.Networking: 113
+
+	  The web view then stays blank forever and never calls didFinish, so the
+	  preview panel is empty even though the HTML was generated correctly. This
+	  is needed even though the page is loaded from memory and loads nothing
+	  over the network.
+	-->
+	<key>com.apple.security.network.client</key>
+	<true/>
+
+	<!--
+	  Local images beside the document are NOT readable with this set of
+	  entitlements. Quick Look grants access to the previewed file alone, so
+	  ![](diagram.png) falls back to its alt text. Remote https images work.
+
+	  The fix is a read only temporary exception:
+
+	      com.apple.security.temporary-exception.files.absolute-path.read-only
+	      with the value /Users/ (and /Volumes/ for external disks)
+
+	  That is a restricted entitlement. Adding it to an ad hoc signed build does
+	  not merely fail to grant access, it gets the extension killed the moment it
+	  touches a sibling file, with no error logged and no crash report written.
+	  It is only honoured when the signature is backed by a real identity, so add
+	  it together with Developer ID signing, never before.
+	-->
+</dict>
+</plist>
