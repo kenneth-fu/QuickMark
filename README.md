@@ -1,18 +1,56 @@
 # QuickMark
 
-Rendered Markdown in Finder's Quick Look, built on the modern Quick Look Preview
-Extension API rather than the retired `.qlgenerator` plugin architecture.
+Press Space on a `.md`, `.json`, `.epub` or `.env` file in Finder and read the
+file, instead of its raw source.
 
-Select a `.md` file, press Space, read it properly. Also previews `.epub` as
-cover, metadata, contents and chapters, `.json` as a collapsible tree, `.env` as
-a key and value table, and other extension-less text such as `Dockerfile` and
-`.gitignore`.
+## Why this exists
+
+Quick Look is one of the best things about the Mac. Select a file, tap Space,
+see the file. It is instant, it needs no app, and for images, PDFs and video it
+is perfect.
+
+Then you tap Space on the files you actually work in all day:
+
+* **Markdown** comes back as raw source. Every `#`, every `*`, every `|`, with
+  tables as unaligned pipe soup and links as bracket noise. A README is a
+  document, and Quick Look hands you the markup instead of the document.
+* **JSON** comes back with no structure at all. No collapsing, no colour, no
+  way to see the shape of a document at a glance, and a minified file is just a
+  wall of text.
+* **`.env`, `Dockerfile`, `.gitignore`** and friends get no useful preview at
+  all, because a name with no extension is a type macOS does not recognise.
+
+The workaround is to open a real editor, which is a heavy thing to do when the
+question was only ever "what is in this file". That small friction, dozens of
+times a day, is the entire reason this project exists.
+
+QuickMark closes it. One preview extension that renders all of these, in one
+theme that follows light and dark mode, with no JavaScript anywhere in it.
+
+### A correction about QLMarkdown
+
+This began as a replacement for
+[QLMarkdown](https://github.com/sbarex/QLMarkdown), which had stopped previewing
+Markdown on my machine. The diagnosis at the time was that it was abandoned and
+built on the retired `.qlgenerator` architecture.
+
+**That was wrong, and it belongs here rather than buried.** QLMarkdown is
+actively maintained (1.5.3 shipped in September 2026) and ships a modern preview
+extension of exactly the same kind as this one. If Markdown is all you need, it
+is the more mature and more configurable choice. Installing it will also take
+Markdown previews back from QuickMark, since when two extensions claim a content
+type macOS picks one of them.
+
+What QuickMark does that it does not: JSON, EPUB, dotenv and extension-less text
+files, handled by a single extension with a single consistent theme.
+
+## Install
 
 ```bash
 ./install.sh
 ```
 
-Then select any `.md` file in Finder and press Space.
+Then select a `.md`, `.json`, `.epub` or `.env` file in Finder and press Space.
 
 ## What it renders
 
