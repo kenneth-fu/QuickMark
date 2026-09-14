@@ -290,3 +290,12 @@ to find:
   previous build.
 * **Fire the completion handler from `didFinish`**, not from
   `preparePreviewOfFile`. Calling it early snapshots a blank web view.
+
+## License
+
+MIT, see [LICENSE](LICENSE).
+
+The one runtime dependency, Apple's
+[swift-markdown](https://github.com/apple/swift-markdown), is Apache 2.0, which
+is compatible. It is fetched by Swift Package Manager rather than vendored, so
+no third party source is redistributed in this repository.
